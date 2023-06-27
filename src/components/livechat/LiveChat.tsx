@@ -38,13 +38,13 @@ export default function LiveChat(props: Props) {
     const url = 'https://ya43fuixdi.execute-api.us-east-1.amazonaws.com/dev/newMessage'; // Replace with your desired URL
   
     const payload = {
-      toNumber: '+250783054874',
-      text: 'Good night!',
-      type: 'text',
-      phoneNumberId: '101514826127381',
-      channel: 'bot',
-      fromNumber: 'RandomString',
-    };
+      "toNumber":"+250783054874",
+      "body":"Good night!",
+      "type":"text",
+      "phoneNumberId":"101514826127381",
+      "channelType":"bot",
+      "fromNumber":"randomString"
+  };
   
     try {
       const response = await fetch(url, {
