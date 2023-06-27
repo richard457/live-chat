@@ -57,7 +57,7 @@ export default function LiveChat(props: Props) {
       });
   
       if (!response.ok) {
-        throw new Error('Failed to send the message.');
+        throw new Error('Failed to send the message');
       }
   
       // TODO: handle success response
