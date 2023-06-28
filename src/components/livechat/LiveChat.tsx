@@ -47,7 +47,6 @@ export default function LiveChat(props: Props) {
     const url = 'https://ya43fuixdi.execute-api.us-east-1.amazonaws.com/dev/newMessage'; // Replace with your desired URL
     const storedRandomString = localStorage.getItem('randomString');
     let randomString
-  console.log(token)
   if (storedRandomString) {
     randomString = storedRandomString;
   } else {
