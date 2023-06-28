@@ -3,7 +3,7 @@ export type Config = {
   name: string;
 };
 
-export const isChecklistItemType = (value: any): value is Config => {
+export const configType = (value: any): value is Config => {
   return (
     typeof value.token === "string" &&
     typeof value.name === "string"

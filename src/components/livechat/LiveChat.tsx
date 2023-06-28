@@ -46,7 +46,8 @@ export default function LiveChat(props: Props) {
     const token = props.configs?.[0]?.token ?? '';
     const url = 'https://ya43fuixdi.execute-api.us-east-1.amazonaws.com/dev/newMessage'; // Replace with your desired URL
     const storedRandomString = localStorage.getItem('randomString');
-    let randomString;
+    let randomString
+  console.log(token)
   if (storedRandomString) {
     randomString = storedRandomString;
   } else {
@@ -78,7 +79,7 @@ export default function LiveChat(props: Props) {
       }
     } catch (error) {
       console.error('Failed to send the message:', error);
-      // TODO: handle error
+      // TODO: handle errors
     }
   };
   
