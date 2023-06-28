@@ -31,33 +31,16 @@ export default function LiveChat(props: Props) {
       handleSendMessage();
     }
   };
-  const generateRandomString = () => {
-    let randomString = '';
-    const digits = '0123456789';
-  
-    for (let i = 0; i < 10; i++) {
-      const randomIndex = Math.floor(Math.random() * digits.length);
-      randomString += digits[randomIndex];
-    }
-  
-    return randomString;
-  };
   const handleSendMessage = async () => {
     const token = props.configs?.[0]?.token ?? '';
     const url = 'https://ya43fuixdi.execute-api.us-east-1.amazonaws.com/dev/newMessage'; // Replace with your desired URL
-    const storedRandomString = localStorage.getItem('randomString');
-    let randomString
-  if (storedRandomString) {
-    randomString = storedRandomString;
-  } else {
-    randomString = generateRandomString();
-    localStorage.setItem('randomString', randomString);
-  }
+  
   const payload = {
       "body":message,
       "type":"text",
       "channelType":"bot",
-      "fromNumber":randomString
+      ///Bot has random number that is fixed
+      "fromNumber":"5912722238"
   };
   setMessages([...messages, { text: message, sent: true }]);
   setMessage('');
