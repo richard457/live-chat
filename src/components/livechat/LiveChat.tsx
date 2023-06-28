@@ -8,7 +8,6 @@ import AddRounded from "@mui/icons-material/AddRounded"
 type Props = {
   configs?: Config[];
 };
-// 
 type Message = {
   text: string;
   sent: boolean;
@@ -32,19 +31,37 @@ export default function LiveChat(props: Props) {
       handleSendMessage();
     }
   };
-
+  const generateRandomString = () => {
+    let randomString = '';
+    const digits = '0123456789';
+  
+    for (let i = 0; i < 10; i++) {
+      const randomIndex = Math.floor(Math.random() * digits.length);
+      randomString += digits[randomIndex];
+    }
+  
+    return randomString;
+  };
   const handleSendMessage = async () => {
     const token = props.configs?.[0]?.token ?? '';
     const url = 'https://ya43fuixdi.execute-api.us-east-1.amazonaws.com/dev/newMessage'; // Replace with your desired URL
-  
-    const payload = {
-      "toNumber":"+250783054874",
-      "body":"Good night!",
+    const storedRandomString = localStorage.getItem('randomString');
+    let randomString;
+  if (storedRandomString) {
+    randomString = storedRandomString;
+  } else {
+    randomString = generateRandomString();
+    localStorage.setItem('randomString', randomString);
+  }
+  const payload = {
+      "body":message,
       "type":"text",
-      "phoneNumberId":"101514826127381",
       "channelType":"bot",
-      "fromNumber":"randomString"
+      "fromNumber":randomString
   };
+  setMessages([...messages, { text: message, sent: true }]);
+  setMessage('');
+  setShowButtons(false);
   
     try {
       const response = await fetch(url, {
@@ -59,12 +76,6 @@ export default function LiveChat(props: Props) {
       if (!response.ok) {
         throw new Error('Failed to send the message');
       }
-  
-      // TODO: handle success response
-  
-      setMessages([...messages, { text: message, sent: true }]);
-      setMessage('');
-      setShowButtons(false);
     } catch (error) {
       console.error('Failed to send the message:', error);
       // TODO: handle error
@@ -90,6 +101,7 @@ export default function LiveChat(props: Props) {
       sent: false,
     };
     setMessages([welcomeMessage]);
+    localStorage.removeItem('randomString');
   }, []);
 
   return (
@@ -100,7 +112,7 @@ export default function LiveChat(props: Props) {
           sx={{ bgcolor: "success.main", color: "black" }}
           onClick={handleToggleChat}
         >
-          <ForumRoundedIcon sx={{ color: "black" }} />
+          <ForumRoundedIcon sx={{ color: "white" }} />
         </Fab>
       </Box>
       <Box
@@ -133,7 +145,7 @@ export default function LiveChat(props: Props) {
             width: "100%",
           }}
         >
-          <Typography variant="subtitle1" fontFamily="Poppins">flipper bot</Typography>
+          <Typography variant="subtitle1" fontFamily="Poppins">Chat</Typography>
           <Button onClick={handleCloseChat} size="small">
             <CloseIcon sx={{color:'white'}}/>
           </Button>
