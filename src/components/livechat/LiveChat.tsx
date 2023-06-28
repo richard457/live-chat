@@ -96,11 +96,15 @@ export default function LiveChat(props: Props) {
   };
 
   useEffect(() => {
+    const link = document.createElement("link");
     const welcomeMessage = {
       text: "Welcome to flipper bot, your digital assistant. What would you like to do?",
       sent: false,
     };
     setMessages([welcomeMessage]);
+    link.href = "https://fonts.googleapis.com/css2?family=Poppins&display=swap";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
     localStorage.removeItem('randomString');
   }, []);
 
