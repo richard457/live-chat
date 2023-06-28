@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/livechat/static/js/main.8ab59ad5.js",
+    "main.js": "/livechat/static/js/main.f2350225.js",
     "index.html": "/livechat/index.html",
-    "main.8ab59ad5.js.map": "/livechat/static/js/main.8ab59ad5.js.map"
+    "main.f2350225.js.map": "/livechat/static/js/main.f2350225.js.map"
   },
   "entrypoints": [
-    "static/js/main.8ab59ad5.js"
+    "static/js/main.f2350225.js"
   ]
 }
